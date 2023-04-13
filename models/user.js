@@ -1,4 +1,4 @@
-const Joi = require("Joi");
+const Joi = require("joi");
 const jwt = require("jsonwebtoken");
 const config = require("config");
 const dotenvConfig = require("dotenv").config();
