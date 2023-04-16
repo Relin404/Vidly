@@ -1,6 +1,6 @@
 const winston = require("winston");
 require("express-async-errors");
-require("winston-mongodb");
+// require("winston-mongodb");
 
 module.exports = function () {
   winston.exceptions.handle(
@@ -23,10 +23,10 @@ module.exports = function () {
     })
   );
 
-  winston.add(
-    new winston.transports.MongoDB({
-      db: "mongodb://127.0.0.1/vidly",
-      level: "info",
-    })
-  );
+  // winston.add(
+  //   new winston.transports.MongoDB({
+  //     db: "mongodb://127.0.0.1/vidly",
+  //     level: "info",
+  //   })
+  // );
 };

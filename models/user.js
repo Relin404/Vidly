@@ -1,14 +1,14 @@
+const config = require("config");
 const Joi = require("joi");
 const jwt = require("jsonwebtoken");
-const config = require("config");
-const dotenvConfig = require("dotenv").config();
+// const dotenvConfig = require("dotenv").config();
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    minLength: 5,
+    minLength: 2,
     maxLength: 50,
   },
   email: {
@@ -21,7 +21,6 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    unique: true,
     minLength: 5,
     maxLength: 1024,
   },
@@ -30,10 +29,14 @@ const userSchema = new mongoose.Schema({
 
 userSchema.methods.generateAuthToken = function () {
   const token = jwt.sign(
-    { _id: this._id, isAdmin: this.isAdmin },
-    process.env.jwtPrivateKey
+    {
+      _id: this._id,
+      name: this.name,
+      email: this.email,
+      isAdmin: this.isAdmin,
+    },
+    config.get("jwtPrivateKey")
   );
-  // const token = jwt.sign({ _id: this._id }, config.get("jwtPrivateKey"));
   return token;
 };
 
@@ -41,13 +44,12 @@ const User = mongoose.model("User", userSchema);
 
 const validateUser = (user) => {
   const schema = Joi.object({
-    name: Joi.string().min(5).max(30).required(),
+    name: Joi.string().min(2).max(50).required(),
     email: Joi.string().min(5).max(255).required().email(),
-    password: Joi.string().min(5).max(1024).required(),
+    password: Joi.string().min(5).max(255).required(),
   });
   return schema.validate(user);
 };
 
-exports.userSchema = userSchema;
 exports.User = User;
 exports.validate = validateUser;
