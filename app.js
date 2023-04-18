@@ -3,20 +3,13 @@ const app = express();
 const winston = require("winston");
 const chalk = require("chalk");
 
-const checkConfig = require("./startup/config");
-checkConfig();
-const startLogger = require("./startup/logging");
-startLogger();
-const initiateValidation = require("./startup/validation");
-initiateValidation();
-const initiateRoutes = require("./startup/routes");
-initiateRoutes(app);
-const startDatabase = require("./startup/db");
-startDatabase();
-
-// const promise = Promise.reject(new Error("Something failed miserably"));
-// promise.then(() => console.log("Done"));
-// throw new Error("Something failed during startup.");
+require("./startup/config"); // checkConfig
+require("./startup/logging"); // startLogger
+require("./startup/validation"); // initiateValidation
+require("./startup/routes")(app); // initiateRoutes
+require("./startup/db")(); // startDb
+// if (process.env.NODE_ENV === "production")
+require("./startup/prod")(app); //
 
 console.log(chalk.hex("#FFF111")`Private key is: ${process.env.jwtPrivateKey}`);
 
