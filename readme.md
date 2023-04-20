@@ -20,7 +20,7 @@ Next, from the project folder, install the dependencies:
 
     npm i
 
-### Populate the Database (Not functional in this version; to be updated)
+### Populate the Database (not functional in this version; to be updated)
 
     node seed.js
 
