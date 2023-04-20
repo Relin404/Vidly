@@ -1,7 +1,6 @@
 const config = require("config");
 const Joi = require("joi");
 const jwt = require("jsonwebtoken");
-// const dotenvConfig = require("dotenv").config();
 const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
@@ -52,4 +51,4 @@ const validateUser = (user) => {
 };
 
 exports.User = User;
-exports.validate = validateUser;
+exports.validateUser = validateUser;

@@ -6,13 +6,13 @@ const Joi = require("joi");
 const express = require("express");
 const router = express.Router();
 
-function validateReturn(req) {
+const validateReturn = (req) => {
   const schema = Joi.object({
     customerId: Joi.objectId().required(),
     movieId: Joi.objectId().required(),
   });
   return schema.validate(req);
-}
+};
 
 // POST
 router.post("/", [auth, validate(validateReturn)], async (req, res) => {
