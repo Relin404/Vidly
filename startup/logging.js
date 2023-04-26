@@ -6,7 +6,7 @@ module.exports = function () {
   winston.exceptions.handle(
     new winston.transports.Console({
       colorize: true,
-      prettyPrinte: true,
+      prettyPrint: true,
     }),
     new winston.transports.File({
       filename: "uncaughtExceptions.log",
