@@ -1,0 +1,11 @@
+node_modules/
+
+.DS_Store
+
+.env
+
+logfile.log
+uncaughtExceptions.log
+
+sandbox.js
+seed.js
