@@ -1,12 +1,6 @@
 ## Introduction
-
-This project is the backend of Vidly, an imaginary video rental app. I've used Vidly as an example in several of my online programming courses, such as:
-
-- https://codewithmosh.com/p/mastering-react
-- https://codewithmosh.com/p/the-complete-node-js-course
-- https://codewithmosh.com/p/asp-net-mvc
-
-This is the implementation of Vidly in Node.js.
+This is the backend of Vidly, a video rental application. 
+It is constantly updated with features; frontend is to be added soon.
 
 ## Setup
 
@@ -26,7 +20,7 @@ Next, from the project folder, install the dependencies:
 
     npm i
 
-### Populate the Database
+### Populate the Database (not functional in this version; to be updated)
 
     node seed.js
 
@@ -42,11 +36,11 @@ All tests should pass.
 
     node index.js
 
-This will launch the Node server on port 3900. If that port is busy, you can set a different point in config/default.json.
+This will launch the Node server on port 3000. If that port is busy, you can set a different point in config/default.json.
 
 Open up your browser and head over to:
 
-http://localhost:3900/api/genres
+http://localhost:8000/api/genres
 
 You should see the list of genres. That confirms that you have set up everything successfully.
 
@@ -54,10 +48,11 @@ You should see the list of genres. That confirms that you have set up everything
 
 If you look at config/default.json, you'll see a property called jwtPrivateKey. This key is used to encrypt JSON web tokens. So, for security reasons, it should not be checked into the source control. I've set a default value here to make it easier for you to get up and running with this project. For a production scenario, you should store this key as an environment variable.
 
+On Windows:
+
+    $env:vidly_jwtPrivateKey=yourSecureKey
+
 On Mac:
 
     export vidly_jwtPrivateKey=yourSecureKey
 
-On Windows:
-
-    set vidly_jwtPrivateKey=yourSecureKey
